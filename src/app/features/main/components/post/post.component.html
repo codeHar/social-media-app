@@ -1,0 +1,36 @@
+<div class="p-3 border-bottom-2 border-gray-300 post">
+    <div class="flex gap-2">
+        <p-avatar *ngIf="!post.user_image" [label]="post.user_name| firstLetter" styleClass="mr-2" size="large"
+            shape="circle"></p-avatar>
+        <img [src]="post.user_image" *ngIf="post.user_image" class="border-circle mr-2 profile-pic"
+            style="object-fit: cover;">
+        <div class="flex-grow-1">
+            <h5 class="mb-2">{{post.user_name | titlecase}} <span class="text-sm text-700 ml-2">{{post.date_added | date:'short'}}</span></h5>
+            <p *ngIf="post.text">{{post.text}}</p>
+            <img [src]="post.media" class="mt-3 border-round-lg" *ngIf="post.isImage && post.media">
+            <video class="mt-3" width="100%" height="280" autoplay controls *ngIf="!post.isImage && post.media">
+                <source [src]="post.media" type="video/mp4">
+            </video>
+
+            <div class="pt-3">
+                <div class="flex">
+                    <div class="col-3 flex align-items-center gap-1 pb-0">
+                        <span class="text-lg">{{post.likes.length}}</span>
+                        <i [ngClass]="postAlreadyLiked ? 'pi pi-heart-fill' : 'pi pi-heart'"
+                            class=" text-xl cursor-pointer action-btn" (click)="likePost(post.id)"></i>
+                    </div>
+                    <div class="col-3 flex align-items-center gap-1 pb-0">
+                        <span class="text-lg">{{post.comments.length}}</span>
+                        <i class="pi pi-comment text-xl cursor-pointer action-btn" (click)="toggleShowComment()"></i>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <app-add-comments *ngIf="showComments" [post]="post"></app-add-comments>
+
+</div>

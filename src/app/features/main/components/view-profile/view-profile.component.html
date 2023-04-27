@@ -1,0 +1,33 @@
+<p-sidebar [(visible)]="display" position="right" [styleClass]="screenSizeService.isSmallScreen ? 'w-full' : 'w-500'"
+    (onHide)="closeDialog.emit()" [showCloseIcon]="false">
+    <ng-template pTemplate="content">
+        <div class="profile">
+            <div class="profile-header">
+                <div class="profile-image">
+                    <p-avatar *ngIf="!user.image" [label]="user.name! | firstLetter" styleClass="mr-2" size="xlarge"
+                        [style]="{ 'width':'100px','height':'100px' }" shape="circle"></p-avatar>
+                    <img [src]="user.image" *ngIf="user.image">
+                </div>
+            </div>
+            <div class="content mt-5 p-3">
+                <h5 class="mt-3 font-bold">{{user.name | titlecase}}</h5>
+                <p class="mt-2">{{ user.description ? user.description : 'Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Voluptatibus beatae laboriosam
+                    impedit atque
+                    exercitationem ad voluptate repellendus ducimus, distinctio nihil, reiciendis maiores, optio
+                    quisquam perferendis culpa accusantium. Explicabo, numquam nisi?' }}</p>
+            </div>
+
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="w-full flex justify-content-between">
+            <p-button (click)="closeDialog.emit()" styleClass="p-button-danger">Close</p-button>
+
+            <button pButton (click)="toggleEditProfile()">Edit Profile</button>
+        </div>
+    </ng-template>
+</p-sidebar>
+
+
+<app-edit-profile *ngIf="showEditProfile" (closeDialog)="toggleEditProfile()"></app-edit-profile>

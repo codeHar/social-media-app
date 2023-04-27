@@ -1,0 +1,51 @@
+<div class="surface-card p-4 shadow-2 border-round w-full lg:w-4">
+    <div class="text-center mb-5">
+        <img [src]="ASSETS.LOGO" alt="Image" height="50" class="mb-3">
+        <div class="text-900 text-3xl font-medium mb-3">Connectify</div>
+        <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+        <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"
+            [routerLink]="APP_ROUTES.AUTH.REGISTER">Create today!</a>
+    </div>
+
+    <div>
+        <form [formGroup]="form">
+            <div class="mb-3">
+                <label for="email1" class="block text-900 font-medium mb-2">Email</label>
+                <input id="email1" type="text" formControlName="email" placeholder="Email address" pInputText
+                    class="w-full">
+                <div class="mt-2">
+                    <p class="text-red-500" *ngIf="checkControlError('email','required')">
+                        Email is Required</p>
+                    <p class="text-red-500" *ngIf="checkControlError('email','email')">
+                        Invalid Email</p>
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="password1" class="block text-900 font-medium mb-2">Password</label>
+                <input id="password1" type="password" formControlName="password" placeholder="Password" pInputText
+                    class="w-full">
+                <div class="mt-2">
+                    <p class="text-red-500" *ngIf="checkControlError('password','required')">
+                        Password is Required</p>
+                    <p class="text-red-500" *ngIf="checkControlError('password','minlength')">
+                        Password must be atleast 5 character long</p>
+                </div>
+            </div>
+
+
+            <!-- <div class="flex align-items-center justify-content-between mb-6">
+                    <div class="flex align-items-center">
+                        <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
+                        <label for="rememberme1" class="text-900">Remember me</label>
+                    </div>
+                    <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
+                </div> -->
+
+            <button pButton pRipple label="Log In" icon="pi pi-user" class="w-full" type="button"
+                (click)="login()"></button>
+        </form>
+
+    </div>
+</div>

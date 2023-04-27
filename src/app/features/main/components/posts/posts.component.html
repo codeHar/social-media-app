@@ -1,0 +1,3 @@
+<ng-container *ngFor="let post of posts">
+    <app-post [post]="post" (refresh)="getData()"></app-post>
+</ng-container>

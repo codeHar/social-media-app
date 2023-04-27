@@ -1,0 +1,25 @@
+<div class="mt-5">
+    <textarea class="w-full" name="myTextarea" id="myTextarea" pInputTextarea placeholder="Enter your comment here"
+        rows="2" [(ngModel)]="comment">
+
+</textarea>
+    <div class="w-full flex justify-content-end mt-1">
+        <button pButton (click)="addComment()">Add</button>
+    </div>
+
+    <div class="mt-2">
+        <div class="flex gap-1 mt-3" *ngFor="let comment of post.comments">
+            <div>
+                <p-avatar *ngIf="!comment?.user_image" [label]="comment?.user_name! | firstLetter" styleClass="mr-2"
+                    size="large" shape="circle"></p-avatar>
+                <img [src]="comment?.user_image" width="35px" height="35px" *ngIf="comment?.user_image" class="border-circle mr-2"
+                style="object-fit: cover;">
+            </div>
+
+            <div class="flex-grow-1 bg-gray-200 border-round-lg p-2">
+                <h5>{{comment.user_name}}</h5>
+                <p class="mt-1">{{comment.comment}}</p>
+            </div>
+        </div>
+    </div>
+</div>

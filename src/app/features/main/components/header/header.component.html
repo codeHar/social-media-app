@@ -1,0 +1,20 @@
+<div class="border-bottom-2 border-gray-300 py-2">
+    <div class="col-11 m-auto flex justify-content-between align-items-center gap-3">
+        <div class="flex flex-wrap gap-2 align-items-center">
+            <img [src]="ASSETS.LOGO" width="35px" height="35px">
+            <h3>Connectify</h3>
+        </div>
+
+        <p-menu #menu [model]="items" [popup]="true" [appendTo]="'body'"></p-menu>
+        <div class="flex flex-wrap align-items-center profile cursor-pointer" (click)="menu.toggle($event)">
+            <p-avatar *ngIf="!user?.image && user?.name" [label]="user.name! | firstLetter" styleClass="mr-2"
+                size="large" shape="circle"></p-avatar>
+            <img [src]="user.image" *ngIf="user?.image" width="35px" height="35px" class="border-circle mr-2"
+                style="object-fit: cover;">
+            <span class="font-bold " *ngIf="user?.name">{{user.name}}</span>
+        </div>
+    </div>
+</div>
+
+
+<app-view-profile *ngIf="showProfile" (closeDialog)="hideProfile()"></app-view-profile>

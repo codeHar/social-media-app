@@ -1,0 +1,44 @@
+<p-sidebar [(visible)]="display" position="right" [styleClass]="screenSizeService.isSmallScreen ? 'w-full' : 'w-500'"
+    (onHide)="closeDialog.emit()" [showCloseIcon]="false">
+    <ng-template pTemplate="content">
+        <div class="profile p-3">
+            <h3 class="mb-4">Edit Profile</h3>
+            <div class="upload-image mb-3">
+                <div class="upload-icon" *ngIf="!selectedImageUrl"><i class="pi pi-image"></i></div>
+                <div class="image" *ngIf="selectedImageUrl"><img [src]="selectedImageUrl" alt=" Image"></div>
+
+                <p-fileUpload #fileUpload mode="basic" class="mt-4" name="demo[]" accept="image/*"
+                    [maxFileSize]="1000000" (onSelect)="onFileSelect($event)" [auto]="true"
+                    chooseLabel="Browse"></p-fileUpload>
+            </div>
+
+            <form [formGroup]="form">
+                <div class="mb-3">
+                    <label for="name" class="block text-900 font-medium mb-2">Title</label>
+                    <input id="name" type="text" formControlName="name" placeholder="Enter your name" pInputText
+                        class="w-full">
+                    <div class="mt-2">
+                        <p class="text-red-500" *ngIf="checkControlError('name','required')">
+                            Name is Required</p>
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="name" class="block text-900 font-medium mb-2">Description</label>
+                    <textarea class="w-full" name="myTextarea" id="myTextarea" pInputTextarea
+                        placeholder="Tell something about yourself" rows="4" formControlName="description">
+                        </textarea>
+                </div>
+            </form>
+
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="w-full flex justify-content-between">
+            <p-button (click)="closeDialog.emit()" styleClass="p-button-danger">Cancel</p-button>
+
+            <button pButton (click)="updateProfile()">Update Profile</button>
+        </div>
+    </ng-template>
+</p-sidebar>

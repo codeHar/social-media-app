@@ -1,0 +1,33 @@
+:host ::ng-deep {
+    .p-sidebar .p-sidebar-header {
+        display: none;
+    }
+    .p-sidebar .p-sidebar-content{
+        padding:0
+    }
+}
+
+.profile {
+
+    .profile-header {
+        background: #2193b0;
+        background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
+        background: linear-gradient(to right, #6dd5ed, #2193b0);
+        height:100px;
+        position:relative
+    }
+
+    .profile-image{
+        position: absolute;
+        bottom:0;
+        left:20px;
+        transform: translateY(50%);
+    }
+
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}

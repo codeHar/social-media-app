@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+
+}
+
+:root {
+    --header-height: 50px;
+
+}
+
+
+body {
+    background-color: var(--surface-ground);
+}
+
+.w-500 {
+    width: 500px !important;
+}
